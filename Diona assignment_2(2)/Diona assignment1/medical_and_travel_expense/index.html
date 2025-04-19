@@ -1,0 +1,150 @@
+<!-- File: exercise1-medical-expense/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medical & Travel Expense Request</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="form-container">
+    <header>
+      <div class="header-container">
+        <img src="../assets/logo/wcb_logo.jpg" alt="WCB Logo" class="logo" />
+        <div class="header-text">
+          <p>333 Broadway</p>
+          <p>Winnipeg, MB R3C 4W3</p>
+          <p>Phone: (204) 954-4321 | Toll Free: 1-855-954-4321</p>
+          <p><a href="https://www.wcb.mb.ca">wcb.mb.ca</a></p>
+        </div>
+      </div>
+      <div class="title-section">
+        <h1>Medical & Travel Expense Request</h1>
+        <p class="claim-number">Claim No. 20042047</p>
+      </div>
+    </header>
+
+    <main>
+      <form id="expenseForm">
+        <p class="request-line">Madeleine Willson requested reimbursement for the following medical and/or travel expenses:</p>
+        <section id="prescription-drugs" class="expense-section">
+          <h2>Prescription Drugs</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Drug Name</th>
+                <th>Date Purchased</th>
+                <th>Prescription Date</th>
+                <th>Healthcare Provider Name</th>
+                <th>Paid Amount</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+
+        <section id="otc-drugs" class="expense-section">
+          <h2>Over-the-Counter Drugs</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Drug Name</th>
+                <th>Date Purchased</th>
+                <th>Paid Amount</th>
+                <th>Seller's Name</th>
+                <th>Reason for Purchasing</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+
+        <section id="medical-supplies" class="expense-section">
+          <h2>Bandages, Braces or Other Medical Supplies</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Item Purchased</th>
+                <th>Date Purchased</th>
+                <th>Was this Prescribed?</th>
+                <th>Healthcare Provider</th>
+                <th>Paid Amount</th>
+                <th>Seller's Name</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+        
+        <section id="parking-expenses" class="expense-section">
+          <h2>Parking for Medical Appointments</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Address</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Meter Number</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+        
+        <section id="mileage-expenses" class="expense-section">
+          <h2>Mileage to Medical Appointments</h2>
+          <p class="reimbursement-note">The WCB will generally reimburse only those transportation costs which are in excess of costs that would be incurred by the worker while travelling to and from work</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Appointment Date</th>
+                <th>Healthcare Provider Address</th>
+                <th>Workplace Address</th>
+                <th>Number of KM (Round Trip)</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+        
+        <section id="transit-expenses" class="expense-section">
+          <h2>Bus or Taxi Fare for Medical Appointments</h2>
+          <p class="taxi-note">*Note: Pre-approval is required from your WCB representative to claim taxi fare(s).</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Address of Starting Point </th>
+                <th>Address of Healthcare Provider/Medical Facility</th>
+                <th>Bus or Taxi (indicate one)</th>
+                <th>Total Fare Paid</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+
+        <section class="declaration-section">
+          <div class="declaration">
+            <label class="declaration-checkbox">
+              <input type="checkbox" id="declarationCheckbox">
+              I understand that the Privacy Notice applies to the personal information collected in this document.
+            </label>
+          </div>
+        </section>
+      </form>
+    </main>
+
+    <footer>
+      <div class="footer-info">
+        <span class="worker-id">Worker App ID: <span id="footerAppId"></span></span>
+        <span class="submitted-date">Submitted: <span id="footerSubmittedDate"></span></span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

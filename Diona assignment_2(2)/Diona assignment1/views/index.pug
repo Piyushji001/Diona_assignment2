@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .container
+    +headerSection(data)
+
+    .form-section.medical-expenses
+      +expenseTable(data.medicalExpenses, "Medical Expenses")
+
+    .form-section.travel-expenses
+      +expenseTable(data.travelExpenses, "Travel Expenses")
+
+    .form-section.summary
+      +summarySection(data.totalMedicalExpenses, data.totalTravelExpenses, data.grandTotal)
+
+    +actionButtons(currentDataset) 

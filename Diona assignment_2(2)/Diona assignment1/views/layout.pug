@@ -1,0 +1,61 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Medical and Travel Expense Request
+    link(rel="stylesheet", href="/css/style.css")
+    style.
+      @page {
+        size: A4;
+        margin: 20mm;
+      }
+      @media print {
+        body {
+          width: 210mm;
+          height: 297mm;
+          margin: 0;
+          padding: 20mm;
+        }
+        .action-buttons {
+          display: none;
+        }
+        .expense-table {
+          page-break-inside: auto;
+        }
+        tr {
+          page-break-inside: avoid;
+          page-break-after: auto;
+        }
+      }
+    script(src="/js/script.js")
+  body
+    include mixins
+    mixin formField(label, value, type="text")
+      .form-field
+        label= label
+        input(type=type, value=value, readonly)
+
+    mixin tableRow(date, description, amount)
+      tr
+        td= date
+        td= description
+        td= amount
+
+    mixin expenseTable(expenses)
+      table.expense-table
+        thead
+          tr
+            th Date
+            th Description
+            th Amount
+        tbody
+          each expense in expenses
+            +tableRow(expense.date, expense.description, expense.amount)
+
+    mixin actionButtons(currentDataset)
+      .action-buttons
+        button(onclick=`window.location.href='/switch-dataset/${currentDataset === 'dataset1' ? 'dataset2' : 'dataset1'}'`) Switch Dataset
+        button(onclick=`window.location.href='/generate-pdf?dataset=${currentDataset}'`) Generate PDF
+
+    block content 

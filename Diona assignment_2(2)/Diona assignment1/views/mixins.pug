@@ -1,0 +1,58 @@
+//- Form field mixin with improved styling
+mixin formField(label, value, type="text")
+  .form-field
+    label= label
+    input(type=type, value=value, readonly)
+
+//- Table row mixin with currency formatting
+mixin tableRow(date, description, amount)
+  tr
+    td.date= date
+    td.description= description
+    td.amount= `$${amount.toFixed(2)}`
+
+//- Expense table mixin with improved styling
+mixin expenseTable(expenses, title)
+  .expense-table-container
+    h3= title
+    table.expense-table
+      thead
+        tr
+          th.date Date
+          th.description Description
+          th.amount Amount
+      tbody
+        each expense in expenses
+          +tableRow(expense.date, expense.description, expense.amount)
+
+//- Summary section mixin
+mixin summarySection(medicalTotal, travelTotal, grandTotal)
+  .summary-section
+    .summary-row
+      span.label Total Medical Expenses:
+      span.value= `$${medicalTotal.toFixed(2)}`
+    .summary-row
+      span.label Total Travel Expenses:
+      span.value= `$${travelTotal.toFixed(2)}`
+    .summary-row.total
+      span.label Grand Total:
+      span.value= `$${grandTotal.toFixed(2)}`
+
+//- Action buttons mixin with improved styling
+mixin actionButtons(currentDataset)
+  .action-buttons
+    button.switch-btn(onclick=`window.location.href='/switch-dataset/${currentDataset === 'dataset1' ? 'dataset2' : 'dataset1'}'`) 
+      | Switch to #{currentDataset === 'dataset1' ? 'Dataset 2' : 'Dataset 1'}
+    button.print-btn(onclick=`window.location.href='/generate-pdf?dataset=${currentDataset}'`) 
+      | Generate PDF
+
+//- Header section mixin
+mixin headerSection(data)
+  .header-section
+    .form-title
+      h1 Medical and Travel Expense Request
+    .employee-info
+      +formField("Employee Name", data.employeeName)
+      +formField("Employee ID", data.employeeId)
+      +formField("Department", data.department)
+      +formField("Date of Request", data.requestDate, "date") 
