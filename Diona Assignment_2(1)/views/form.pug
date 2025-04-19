@@ -1,0 +1,80 @@
+extends layout.pug
+
+//- Mixin for form field
+mixin formField(label, value)
+  .form-group
+    label= label
+    span= value
+
+//- Mixin for worker information section
+mixin workerInfo(worker)
+  section.worker-info
+    h2 Worker Information
+    +formField("Worker Name:", worker.name)
+    +formField("Worker ID:", worker.id)
+    +formField("Date:", worker.date)
+    +formField("Project:", worker.project)
+
+//- Mixin for table header
+mixin tableHeader
+  thead
+    tr
+      th Task
+      th Description
+      th Status
+      th Comments
+
+//- Mixin for table row
+mixin tableRow(task)
+  tr
+    td= task.name
+    td= task.description
+    td(class=`status-${task.status.toLowerCase()}`)= task.status
+    td= task.comments
+
+//- Mixin for progress table
+mixin progressTable(tasks)
+  section.progress-section
+    h2 Task Progress
+    table.progress-table
+      +tableHeader
+      tbody
+        each task in tasks
+          +tableRow(task)
+
+//- Mixin for signature field
+mixin signatureField(label, value, isDate = false)
+  .signature-field
+    label= label
+    if isDate
+      span.date= value
+    else
+      span.signature= value
+
+//- Mixin for signature section
+mixin signatureSection(signature)
+  section.signature-section
+    h2 Signatures
+    .signatures-container
+      +signatureField("Supervisor Name:", signature.supervisor)
+      +signatureField("Date:", signature.date, true)
+      +signatureField("Worker Signature:", signature.worker)
+
+block content
+  //- Header with logo and title
+  header.report-header
+    h1 Worker Progress Report
+    .report-meta
+      span.company-name Company Name
+      span.report-date= workerData.date
+
+  //- Main content
+  main.report-content
+    +workerInfo(workerData)
+    +progressTable(tasksData)
+    +signatureSection(signatureData)
+
+  //- Actions (visible only on screen)
+  .actions.no-print
+    button#printBtn.btn.btn-primary Print PDF
+    button#switchDataBtn.btn.btn-secondary Switch Data Set 

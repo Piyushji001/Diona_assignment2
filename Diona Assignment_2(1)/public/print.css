@@ -1,0 +1,56 @@
+/* Print-specific styles */
+@page {
+  size: A4;
+  margin: 20mm;
+}
+
+@media print {
+  /* Reset body styles for printing */
+  body {
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
+
+  /* Container for A4 page */
+  .page-container {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 0;
+    margin: 0;
+    background: white;
+    box-shadow: none;
+  }
+
+  /* Hide non-printable elements */
+  .no-print,
+  .actions,
+  button {
+    display: none !important;
+  }
+
+  /* Table styles for print */
+  .progress-table {
+    page-break-inside: avoid;
+    margin: 15mm 0;
+  }
+
+  /* Ensure signatures are at the bottom */
+  .signature-section {
+    position: relative;
+    margin-top: 20mm;
+  }
+
+  /* Ensure proper text contrast */
+  * {
+    color: black !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Remove background colors */
+  .form-group span {
+    background: none;
+    border: none;
+  }
+} 
